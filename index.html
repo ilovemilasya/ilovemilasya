@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>С днём рождения, Мила! 🎂</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --bg: linear-gradient(155deg, #0d0010 0%, #1a0028 15%, #2d0a3a 30%, #4a1050 50%, #6b1860 70%, #8a2070 85%, #b04090 100%);
+            --pink: #ff6b9d;
+            --soft-pink: #ff9dc2;
+            --green: #00e676;
+            --green-light: #69f0ae;
+            --pink-btn: #ff4081;
+            --pink-btn-light: #ff80ab;
+            --text: #f8f0f5;
+            --text-dim: rgba(248,240,245,0.5);
+            --white: #ffffff;
+            --radius-card: 28px;
+            --radius-btn: 999px;
+            --radius-img: 20px;
+            --shadow-card: 0 30px 100px rgba(0,0,0,0.6), 0 10px 40px rgba(160,32,112,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
+            --shadow-btn: 0 8px 32px rgba(255,64,129,0.35);
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Background effects */
+        .bg-effects {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.35;
+            animation: blobFloat 25s ease-in-out infinite;
+        }
+
+        .bg-blob:nth-child(1) {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(255,64,129,0.6), transparent);
+            top: -120px;
+            left: -80px;
+            animation-delay: 0s;
+        }
+
+        .bg-blob:nth-child(2) {
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(156,39,176,0.5), transparent);
+            bottom: -100px;
+            right: -60px;
+            animation-delay: -9s;
+        }
+
+        .bg-blob:nth-child(3) {
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, rgba(233,30,99,0.4), transparent);
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -18s;
+        }
+
+        @keyframes blobFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(40px, -40px) scale(1.15); }
+            66% { transform: translate(-30px, 30px) scale(0.85); }
+        }
+
+        .bg-heart {
+            position: absolute;
+            font-size: 14px;
+            opacity: 0;
+            color: rgba(255,107,157,0.3);
+            animation: bgHeartFloat linear infinite;
+        }
+
+        @keyframes bgHeartFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.4);
+                opacity: 0;
+            }
+            8% {
+                opacity: 0.25;
+            }
+            92% {
+                opacity: 0.25;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg) scale(0.9);
+                opacity: 0;
+            }
+        }
+
+        .bg-sparkle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: sparkle 3.5s ease-in-out infinite;
+            box-shadow: 0 0 4px #fff, 0 0 8px rgba(255,107,157,0.6);
+        }
+
+        .bg-sparkle:nth-child(odd) {
+            animation-duration: 4.5s;
+            width: 1.5px;
+            height: 1.5px;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.04);
+            opacity: 0;
+            animation: bgCircleFloat linear infinite;
+        }
+
+        @keyframes bgCircleFloat {
+            0% {
+                transform: translateY(100vh) scale(0.7);
+                opacity: 0;
+            }
+            8% {
+                opacity: 0.1;
+            }
+            95% {
+                opacity: 0.15;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1.1);
+                opacity: 0;
+            }
+        }
+
+        .bg-star {
+            position: absolute;
+            font-size: 8px;
+            opacity: 0;
+            animation: sparkle 5s ease-in-out infinite;
+            color: rgba(255,255,255,0.7);
+            text-shadow: 0 0 6px rgba(255,255,255,0.5), 0 0 12px rgba(255,107,157,0.3);
+        }
+
+        .bg-star:nth-child(even) {
+            font-size: 6px;
+            animation-duration: 6s;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 0.6; transform: scale(1); }
+        }
+
+        /* Main container */
+        .app {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* Screen base */
+        .screen {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            opacity: 0;
+            transform: translateY(20px) scale(0.98);
+            transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .screen.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .screen.exit {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.98);
+            pointer-events: none;
+        }
+
+        /* Card */
+        .card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(60px) saturate(180%);
+            -webkit-backdrop-filter: blur(60px) saturate(180%);
+            padding: 40px 28px;
+            width: 100%;
+            max-width: 360px;
+            text-align: center;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 20%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.2) 80%, transparent 100%);
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(ellipse at 50% -20%, rgba(255,107,157,0.12), transparent 60%);
+            pointer-events: none;
+        }
+
+        .card.compact {
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+
+        .card.green {
+            background: rgba(0,230,118,0.08);
+            border-color: rgba(0,230,118,0.2);
+            box-shadow: 0 30px 100px rgba(0,0,0,0.5), 0 10px 40px rgba(0,230,118,0.12), inset 0 1px 0 rgba(255,255,255,0.08), 0 0 80px rgba(0,230,118,0.1);
+            animation: greenPulse 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes greenPulse {
+            0% { box-shadow: 0 30px 100px rgba(0,0,0,0.5), 0 10px 40px rgba(0,230,118,0.12), inset 0 1px 0 rgba(255,255,255,0.08), 0 0 120px rgba(0,230,118,0.4); }
+            100% { box-shadow: 0 30px 100px rgba(0,0,0,0.5), 0 10px 40px rgba(0,230,118,0.12), inset 0 1px 0 rgba(255,255,255,0.08), 0 0 80px rgba(0,230,118,0.1); }
+        }
+
+        .card.flash::after {
+            animation: cardFlash 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes cardFlash {
+            0% { background: radial-gradient(circle at 50% 50%, rgba(0,230,118,0.35), transparent 70%); opacity: 1; }
+            100% { background: radial-gradient(circle at 50% 50%, rgba(0,230,118,0), transparent 70%); opacity: 0; }
+        }
+
+        .card.shake {
+            animation: shake 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            15% { transform: translateX(-6px) rotate(-0.3deg); }
+            30% { transform: translateX(6px) rotate(0.3deg); }
+            45% { transform: translateX(-4px) rotate(-0.2deg); }
+            60% { transform: translateX(4px) rotate(0.2deg); }
+            75% { transform: translateX(-2px); }
+            90% { transform: translateX(2px); }
+        }
+
+        /* Question */
+        .question {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            transition: opacity 0.4s ease, max-height 0.4s ease;
+            max-height: 200px;
+            overflow: hidden;
+            letter-spacing: -0.01em;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+        }
+
+        .question.hidden {
+            opacity: 0;
+            max-height: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: var(--pink);
+            margin-bottom: 28px;
+            font-weight: 600;
+            transition: opacity 0.3s ease, max-height 0.3s ease;
+            max-height: 50px;
+            overflow: hidden;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        .subtitle.hidden {
+            opacity: 0;
+            max-height: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .result-text {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.6;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.02em;
+            color: var(--text);
+        }
+
+        .result-text.show {
+            opacity: 1;
+            max-height: 200px;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Video */
+        .video-container {
+            margin-top: 20px;
+            border-radius: var(--radius-img);
+            overflow: hidden;
+            display: none;
+            animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .video-container.show {
+            display: block;
+        }
+
+        .video-container video {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: var(--radius-img);
+        }
+
+        /* Buttons */
+        .buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            margin-top: 28px;
+            position: relative;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--pink-btn) 0%, var(--pink-btn-light) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-btn);
+            padding: 14px 36px;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: 'Nunito', sans-serif;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 24px rgba(255,64,129,0.3), inset 0 1px 0 rgba(255,255,255,0.25);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.2), transparent);
+            border-radius: var(--radius-btn) var(--radius-btn) 0 0;
+            pointer-events: none;
+        }
+
+        .btn:active {
+            transform: scale(0.94);
+            box-shadow: 0 3px 12px rgba(255,64,129,0.25);
+        }
+
+        .btn.green {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            box-shadow: 0 6px 24px rgba(0,230,118,0.3), inset 0 1px 0 rgba(255,255,255,0.25);
+        }
+
+        .btn.hidden {
+            display: none;
+        }
+
+        .btn.bounce {
+            animation: bounceIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.08); }
+            70% { transform: scale(0.97); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Heart layout for screen 2 */
+        .heart-buttons {
+            position: relative;
+            width: 100%;
+            max-width: 320px;
+            height: 240px;
+            margin: 20px auto 0;
+        }
+
+        .heart-btn-no {
+            position: absolute;
+            background: linear-gradient(135deg, var(--pink-btn), var(--pink-btn-light));
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-btn);
+            padding: 6px 13px;
+            font-size: 10px;
+            font-weight: 700;
+            font-family: 'Nunito', sans-serif;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(255,64,129,0.25), inset 0 1px 0 rgba(255,255,255,0.2);
+            opacity: 1;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            overflow: hidden;
+            white-space: nowrap;
+            transform: translate(-50%, -50%);
+        }
+
+        .heart-btn-no::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.15), transparent);
+            border-radius: var(--radius-btn) var(--radius-btn) 0 0;
+            pointer-events: none;
+        }
+
+        .heart-btn-no:active {
+            transform: translate(-50%, -50%) scale(0.88) !important;
+        }
+
+        .heart-btn-no.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%) scale(0.3);
+        }
+
+        .heart-btn-da {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-btn);
+            padding: 15px 38px;
+            font-size: 16px;
+            font-weight: 800;
+            font-family: 'Nunito', sans-serif;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(0,230,118,0.35), inset 0 1px 0 rgba(255,255,255,0.25), 0 0 50px rgba(0,230,118,0.15);
+            z-index: 2;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            overflow: hidden;
+        }
+
+        .heart-btn-da::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.15), transparent);
+            border-radius: var(--radius-btn) var(--radius-btn) 0 0;
+            pointer-events: none;
+        }
+
+        .heart-btn-da:active {
+            transform: translate(-50%, -50%) scale(0.95);
+        }
+
+        .heart-btn-da:active {
+            transform: translate(-50%, -50%) scale(0.94);
+        }
+
+        /* Photo Slider */
+        .slider {
+            width: 100%;
+            max-width: 380px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+
+        .slide {
+            min-width: 100%;
+            padding: 0 8px;
+        }
+
+        .slide img {
+            width: 100%;
+            border-radius: var(--radius-img);
+            box-shadow: 0 24px 80px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide img + img {
+            margin-top: 10px;
+        }
+
+        .slide.active img {
+            transform: scale(1.015);
+        }
+
+        .slide-text {
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            margin-top: 16px;
+            min-height: 24px;
+            animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: block;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            padding: 10px 20px;
+            border-radius: var(--radius-btn);
+            border: 1px solid rgba(255,255,255,0.06);
+            letter-spacing: 0.06em;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dot.active {
+            background: var(--white);
+            transform: scale(1.5);
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        /* Heart particles */
+        .heart-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+            filter: drop-shadow(0 0 8px rgba(255,107,157,0.6));
+        }
+
+        .heart-particle.float {
+            animation: heartFloat 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .heart-particle.spin {
+            animation: heartSpin 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .heart-particle.burst {
+            animation: heartBurst 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .heart-particle.ring {
+            animation: heartRing 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes heartFloat {
+            0% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+            30% { opacity: 1; transform: translateY(-60px) scale(1.2) rotate(10deg); }
+            100% { opacity: 0; transform: translateY(-250px) scale(0.3) rotate(-15deg); }
+        }
+
+        @keyframes heartSpin {
+            0% { opacity: 1; transform: translate(0, 0) scale(0) rotate(0deg); }
+            40% { opacity: 1; transform: translate(var(--tx), var(--ty)) scale(1.3) rotate(180deg); }
+            100% { opacity: 0; transform: translate(calc(var(--tx) * 1.5), calc(var(--ty) * 1.5)) scale(0.2) rotate(360deg); }
+        }
+
+        @keyframes heartBurst {
+            0% { opacity: 1; transform: translate(0, 0) scale(0); }
+            30% { opacity: 1; transform: translate(var(--tx), var(--ty)) scale(1.5); }
+            100% { opacity: 0; transform: translate(calc(var(--tx) * 2), calc(var(--ty) * 2)) scale(0); }
+        }
+
+        @keyframes heartRing {
+            0% { opacity: 1; transform: scale(0) rotate(0deg); }
+            50% { opacity: 0.8; transform: scale(1.8) rotate(180deg); }
+            100% { opacity: 0; transform: scale(2.5) rotate(360deg); }
+        }
+
+        /* Haptic feedback visual */
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+
+        .btn:active::after {
+            opacity: 1;
+        }
+
+        .btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        .slider-arrow {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-arrow:active {
+            transform: scale(0.9);
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        .slider-arrow:disabled {
+            opacity: 0.2;
+            cursor: default;
+            transform: none;
+        }
+
+        /* Final screen */
+        .final-card {
+            padding: 32px 20px;
+        }
+
+        .final-title {
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.6s ease 0.3s both;
+        }
+
+        .final-text {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.5;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease 0.5s both;
+        }
+
+        .final-card .video-container {
+            margin-top: 0;
+            animation: fadeInUp 0.6s ease 0.7s both;
+        }
+
+        .next-btns {
+            margin-top: 22px;
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .next-btns .btn {
+            padding: 14px 44px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background effects -->
+    <div class="bg-effects" id="bgEffects"></div>
+
+    <div class="app">
+        <!-- Screen 1: Birthday question -->
+        <div class="screen active" id="screen1">
+            <div class="card" id="card1">
+                <div class="question">Привет, у кого-то сегодня день рождение, правда же?</div>
+                <div class="buttons" id="buttons1">
+                    <button class="btn" onclick="handleScreen1('yes')">ДА</button>
+                    <button class="btn" onclick="handleScreen1('no')">НЕТ</button>
+                </div>
+                <div class="result-text" id="result1">А я знал! Сегодня моей девочке исполняется 17 годиков</div>
+                <div class="video-container" id="video1">
+                    <video autoplay muted loop playsinline>
+                        <source src="cat1.webm" type="video/webm">
+                    </video>
+                </div>
+                <div class="buttons next-btns" id="next1" style="display:none">
+                    <button class="btn green" onclick="goToScreen(2)">ДАЛЬШЕ</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 2: Love question -->
+        <div class="screen" id="screen2">
+            <div class="card" id="card2">
+                <div class="question">Как думаешь властемирка тебя любит?</div>
+                <div class="subtitle">(сина сина?)</div>
+                <div class="heart-buttons" id="heartBtns">
+                    <button class="heart-btn-no" onclick="heartNoRun(this)">НЕТ</button>
+                    <button class="heart-btn-no" onclick="heartNoRun(this)">НЕТ</button>
+                    <button class="heart-btn-no" onclick="heartNoRun(this)">НЕТ</button>
+                    <button class="heart-btn-no" onclick="heartNoRun(this)">НЕТ</button>
+                    <button class="heart-btn-no" onclick="heartNoRun(this)">НЕТ</button>
+                    <button class="heart-btn-no" onclick="heartNoRun(this)">НЕТ</button>
+                    <button class="heart-btn-no" onclick="heartNoRun(this)">НЕТ</button>
+                    <button class="heart-btn-no" onclick="heartNoRun(this)">НЕТ</button>
+                    <button class="heart-btn-no" onclick="heartNoRun(this)">НЕТ</button>
+                    <button class="heart-btn-no" onclick="heartNoRun(this)">НЕТ</button>
+                    <button class="heart-btn-no" onclick="heartNoRun(this)">НЕТ</button>
+                    <button class="heart-btn-no" onclick="heartNoRun(this)">НЕТ</button>
+                    <button class="heart-btn-no" onclick="heartNoRun(this)">НЕТ</button>
+                    <button class="heart-btn-no" onclick="heartNoRun(this)">НЕТ</button>
+                    <button class="heart-btn-no" onclick="heartNoRun(this)">НЕТ</button>
+                    <button class="heart-btn-no" onclick="heartNoRun(this)">НЕТ</button>
+                    <button class="heart-btn-no" onclick="heartNoRun(this)">НЕТ</button>
+                    <button class="heart-btn-no" onclick="heartNoRun(this)">НЕТ</button>
+                    <button class="heart-btn-da" onclick="handleScreen2()">ДА</button>
+                </div>
+                <div class="result-text" id="result2">А я знаю что ты тоже его очень очень очень любишь ❤️</div>
+                <div class="video-container" id="video2">
+                    <video autoplay muted loop playsinline>
+                        <source src="cat2.webm" type="video/webm">
+                    </video>
+                </div>
+                <div class="buttons next-btns" id="next2" style="display:none">
+                    <button class="btn green" onclick="goToScreen(3)">ДАЛЬШЕ</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 3: Photos question -->
+        <div class="screen" id="screen3">
+            <div class="card" id="card3">
+                <div class="question">Я тут самые красивые картинки в мире нашёл, хочешь посмотреть?</div>
+                <div class="buttons" id="buttons3">
+                    <button class="btn" onclick="handleScreen3('yes')">ДА</button>
+                    <button class="btn" onclick="handleScreen3('no')">НЕТ</button>
+                </div>
+                <div class="result-text" id="result3"></div>
+            </div>
+        </div>
+
+        <!-- Screen 4: Photo Slider -->
+        <div class="screen" id="screen4">
+            <div class="slider" id="slider">
+                <div class="slider-track" id="sliderTrack">
+                    <div class="slide active">
+                        <img src="milas1.jpg" alt="Мила" loading="lazy">
+                    </div>
+                    <div class="slide">
+                        <img src="milas2.jpg" alt="Мила" loading="lazy">
+                        <img src="milas3.jpg" alt="Мила" loading="lazy">
+                    </div>
+                    <div class="slide">
+                        <img src="milas5.jpg" alt="Мила" loading="lazy">
+                    </div>
+                    <div class="slide">
+                        <img src="milas4.jpg" alt="Мила" loading="lazy">
+                    </div>
+                </div>
+                <div class="slide-text" id="slideText">самая красивая</div>
+                <div class="slider-dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="slider-nav">
+                    <button class="slider-arrow" id="prevSlide" onclick="prevSlide()">‹</button>
+                    <button class="slider-arrow" id="nextSlide" onclick="nextSlide()">›</button>
+                </div>
+                <div class="buttons next-btns" id="slideNext" style="display:none">
+                    <button class="btn green" onclick="finishSlider()">ДАЛЬШЕ</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 5: Happy Birthday -->
+        <div class="screen" id="screen5">
+            <div class="card final-card" id="card5">
+                <div class="final-title">С ДНЕМ РОЖДЕНИЯ МАЛЕНЬКАЯ❤️🎂</div>
+                <div class="final-text">Я тебя очень очень сильно люблю моя сладуля, ты у меня самая лучшая на этом свете! пусть все мечты сбываются и все будет хорошо💕</div>
+                <div class="video-container show">
+                    <video autoplay muted loop playsinline>
+                        <source src="cat10.webm" type="video/webm">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let currentScreen = 1;
+        let noClicks3 = 0;
+        let sliderIndex = 0;
+        let sliderTimer = null;
+        let touchStartX = 0;
+
+        const slideTexts = [
+            'самая красивая',
+            'самая любимая',
+            'самая милая',
+            'самая самая самая лучшая девочка мивася'
+        ];
+
+        // Screen transitions
+        function goToScreen(num) {
+            const current = document.getElementById('screen' + currentScreen);
+            const next = document.getElementById('screen' + num);
+
+            current.classList.remove('active');
+            current.classList.add('exit');
+
+            setTimeout(() => {
+                current.classList.remove('exit');
+                next.classList.add('active');
+                currentScreen = num;
+
+                if (num === 4) startSlider();
+                if (num === 5) {
+                    const card = document.getElementById('card5');
+                    spawnHearts(card);
+                    setTimeout(() => spawnHearts(card), 800);
+                    setTimeout(() => spawnHearts(card), 1600);
+                }
+            }, 600);
+        }
+
+        // Screen 1
+        function handleScreen1(answer) {
+            const card = document.getElementById('card1');
+            const buttons = document.getElementById('buttons1');
+            const result = document.getElementById('result1');
+            const video = document.getElementById('video1');
+
+            if (answer === 'yes') {
+                card.classList.add('green', 'compact', 'flash');
+                buttons.querySelectorAll('.btn').forEach(b => b.classList.add('hidden'));
+                card.querySelector('.question').classList.add('hidden');
+                result.classList.add('show');
+                video.classList.add('show');
+                document.getElementById('next1').style.display = 'flex';
+                spawnHearts(card);
+                setTimeout(() => card.classList.remove('flash'), 600);
+            } else {
+                const btns = buttons.querySelectorAll('.btn');
+                btns[1].classList.add('hidden');
+                const newBtn = document.createElement('button');
+                newBtn.className = 'btn bounce';
+                newBtn.textContent = 'ДА';
+                newBtn.onclick = () => handleScreen1('yes');
+                buttons.appendChild(newBtn);
+            }
+        }
+
+        // Screen 2 - heart buttons run away
+        function heartNoRun(btn) {
+            btn.classList.add('hidden');
+            // Pulse the ДА button
+            const da = document.querySelector('.heart-btn-da');
+            da.style.transform = 'translate(-50%, -50%) scale(1.15)';
+            da.style.boxShadow = '0 8px 40px rgba(0,230,118,0.6), inset 0 1px 0 rgba(255,255,255,0.2), 0 0 60px rgba(0,230,118,0.35)';
+            setTimeout(() => {
+                da.style.transform = 'translate(-50%, -50%) scale(1)';
+                da.style.boxShadow = '0 8px 32px rgba(0,230,118,0.4), inset 0 1px 0 rgba(255,255,255,0.2), 0 0 40px rgba(0,230,118,0.2)';
+            }, 250);
+        }
+
+        function handleScreen2() {
+            const card = document.getElementById('card2');
+            const heartBtns = document.getElementById('heartBtns');
+            const result = document.getElementById('result2');
+            const video = document.getElementById('video2');
+
+            card.classList.add('green', 'compact', 'flash');
+            heartBtns.style.opacity = '0';
+            heartBtns.style.pointerEvents = 'none';
+            card.querySelector('.question').classList.add('hidden');
+            card.querySelector('.subtitle').classList.add('hidden');
+            result.classList.add('show');
+            video.classList.add('show');
+            document.getElementById('next2').style.display = 'flex';
+            spawnHearts(card);
+            setTimeout(() => card.classList.remove('flash'), 600);
+        }
+
+        // Screen 3
+        const noTexts = [
+            'Ну давай посмотрим',
+            'Ну я серьёзно там очень красивые фоточки',
+            'А надо'
+        ];
+
+        function handleScreen3(answer) {
+            const card = document.getElementById('card3');
+            const result = document.getElementById('result3');
+            const buttons = document.getElementById('buttons3');
+            const btns = buttons.querySelectorAll('.btn');
+
+            if (answer === 'yes') {
+                goToScreen(4);
+                return;
+            }
+
+            card.classList.add('shake');
+            setTimeout(() => card.classList.remove('shake'), 500);
+
+            result.textContent = noTexts[noClicks3];
+            result.classList.add('show');
+
+            if (noClicks3 === 2) {
+                btns[0].classList.add('green');
+                btns[1].classList.add('green');
+                card.classList.add('compact', 'flash');
+                card.querySelector('.question').classList.add('hidden');
+                setTimeout(() => {
+                    goToScreen(4);
+                    card.classList.remove('flash');
+                }, 1500);
+            }
+
+            noClicks3++;
+        }
+
+        // Photo Slider
+        function startSlider() {
+            updateSlider();
+        }
+
+        function updateSlider() {
+            const track = document.getElementById('sliderTrack');
+            const text = document.getElementById('slideText');
+            const dots = document.querySelectorAll('.dot');
+            const slides = document.querySelectorAll('.slide');
+
+            track.style.transform = `translateX(-${sliderIndex * 100}%)`;
+            text.textContent = slideTexts[sliderIndex];
+
+            dots.forEach((d, i) => d.classList.toggle('active', i === sliderIndex));
+            slides.forEach((s, i) => s.classList.toggle('active', i === sliderIndex));
+
+            document.getElementById('prevSlide').disabled = sliderIndex === 0;
+            document.getElementById('nextSlide').disabled = sliderIndex === 3;
+            document.getElementById('slideNext').style.display = sliderIndex === 3 ? 'flex' : 'none';
+        }
+
+        function prevSlide() {
+            if (sliderIndex > 0) {
+                sliderIndex--;
+                updateSlider();
+                spawnSliderParticles();
+            }
+        }
+
+        function nextSlide() {
+            if (sliderIndex < 3) {
+                sliderIndex++;
+                updateSlider();
+                spawnSliderParticles();
+            }
+        }
+
+        function spawnSliderParticles() {
+            const slider = document.getElementById('slider');
+            const rect = slider.getBoundingClientRect();
+            const emojis = ['✨', '💫', '⭐', '🌟'];
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const p = document.createElement('div');
+                    p.className = 'heart-particle float';
+                    p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    p.style.fontSize = (10 + Math.random() * 14) + 'px';
+                    p.style.left = (rect.left + Math.random() * rect.width) + 'px';
+                    p.style.top = (rect.top + rect.height * 0.5 + Math.random() * rect.height * 0.3) + 'px';
+                    document.body.appendChild(p);
+                    setTimeout(() => p.remove(), 2000);
+                }, i * 40);
+            }
+        }
+
+        function finishSlider() {
+            goToScreen(5);
+        }
+
+        // Touch swipe
+        const slider = document.getElementById('slider');
+        slider.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        }, { passive: true });
+
+        slider.addEventListener('touchend', (e) => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0 && sliderIndex < 3) {
+                    sliderIndex++;
+                } else if (diff < 0 && sliderIndex > 0) {
+                    sliderIndex--;
+                }
+                updateSlider();
+                spawnSliderParticles();
+            }
+        }, { passive: true });
+
+        // Background effects
+        function createBgEffects() {
+            const container = document.getElementById('bgEffects');
+
+            // Gradient blobs
+            for (let i = 0; i < 3; i++) {
+                const blob = document.createElement('div');
+                blob.className = 'bg-blob';
+                container.appendChild(blob);
+            }
+
+            // Hearts
+            const hearts = ['♥', '♡', '❤', '💕'];
+            for (let i = 0; i < 12; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'bg-heart';
+                heart.textContent = hearts[i % hearts.length];
+                heart.style.left = (5 + Math.random() * 90) + '%';
+                heart.style.fontSize = (10 + Math.random() * 12) + 'px';
+                heart.style.animationDuration = (15 + Math.random() * 20) + 's';
+                heart.style.animationDelay = (Math.random() * 15) + 's';
+                heart.style.opacity = '0';
+                container.appendChild(heart);
+            }
+
+            // Sparkles
+            for (let i = 0; i < 30; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'bg-sparkle';
+                sparkle.style.left = (Math.random() * 100) + '%';
+                sparkle.style.top = (Math.random() * 100) + '%';
+                sparkle.style.animationDelay = (Math.random() * 6) + 's';
+                sparkle.style.animationDuration = (2 + Math.random() * 4) + 's';
+                container.appendChild(sparkle);
+            }
+
+            // Floating circles
+            for (let i = 0; i < 8; i++) {
+                const circle = document.createElement('div');
+                circle.className = 'bg-circle';
+                circle.style.left = (Math.random() * 100) + '%';
+                const size = 30 + Math.random() * 60;
+                circle.style.width = size + 'px';
+                circle.style.height = size + 'px';
+                circle.style.animationDuration = (20 + Math.random() * 25) + 's';
+                circle.style.animationDelay = (Math.random() * 10) + 's';
+                container.appendChild(circle);
+            }
+
+            // Stars
+            const starChars = ['✦', '✧', '⋆', '★'];
+            for (let i = 0; i < 18; i++) {
+                const star = document.createElement('div');
+                star.className = 'bg-star';
+                star.textContent = starChars[i % starChars.length];
+                star.style.left = (Math.random() * 100) + '%';
+                star.style.top = (Math.random() * 100) + '%';
+                star.style.animationDelay = (Math.random() * 8) + 's';
+                star.style.animationDuration = (3 + Math.random() * 5) + 's';
+                container.appendChild(star);
+            }
+        }
+
+        // Heart particles on success
+        function spawnHearts(element) {
+            const rect = element.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+            const emojis = ['❤️', '💖', '💗', '💝', '💕', '💘', '✨', '💫'];
+            const animations = ['float', 'spin', 'burst', 'ring'];
+
+            for (let i = 0; i < 18; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    const anim = animations[Math.floor(Math.random() * animations.length)];
+                    heart.className = 'heart-particle ' + anim;
+                    heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    heart.style.fontSize = (10 + Math.random() * 22) + 'px';
+
+                    if (anim === 'spin' || anim === 'burst') {
+                        const angle = (Math.PI * 2 * i) / 18;
+                        const dist = 50 + Math.random() * 100;
+                        heart.style.setProperty('--tx', Math.cos(angle) * dist + 'px');
+                        heart.style.setProperty('--ty', Math.sin(angle) * dist + 'px');
+                        heart.style.left = cx + 'px';
+                        heart.style.top = cy + 'px';
+                    } else if (anim === 'ring') {
+                        heart.style.left = cx + 'px';
+                        heart.style.top = cy + 'px';
+                        heart.style.transformOrigin = 'center';
+                    } else {
+                        heart.style.left = (rect.left + Math.random() * rect.width) + 'px';
+                        heart.style.top = (rect.top + rect.height * 0.3 + Math.random() * rect.height * 0.5) + 'px';
+                    }
+
+                    document.body.appendChild(heart);
+                    setTimeout(() => heart.remove(), 2500);
+                }, i * 50);
+            }
+        }
+
+        // Init
+        createBgEffects();
+        positionNoButtons();
+
+        // Randomly position НЕТ buttons around ДА
+        function positionNoButtons() {
+            const container = document.getElementById('heartBtns');
+            const btns = container.querySelectorAll('.heart-btn-no');
+            const cw = container.offsetWidth;
+            const ch = container.offsetHeight;
+            const cx = cw / 2;
+            const cy = ch / 2;
+            const minR = 50;
+            const maxR = Math.min(cw, ch) / 2 - 15;
+
+            btns.forEach((btn, i) => {
+                const angle = (Math.PI * 2 * i) / btns.length + (Math.random() - 0.5) * 0.5;
+                const r = minR + Math.random() * (maxR - minR);
+                const x = cx + Math.cos(angle) * r;
+                const y = cy + Math.sin(angle) * r;
+                btn.style.left = x + 'px';
+                btn.style.top = y + 'px';
+            });
+        }
+    </script>
+</body>
+</html>
